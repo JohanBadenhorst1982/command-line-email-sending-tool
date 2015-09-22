@@ -17,6 +17,20 @@ namespace senditquiet
         private string repotTimes;
         private string subject;
         private string format;
+        private string bcc;
+
+        public string Bcc
+        {
+            get { return bcc; }
+            set { bcc = value; }
+        }
+        private string cc;
+
+        public string Cc
+        {
+            get { return cc; }
+            set { cc = value; }
+        }
 
         public SendMailConfiguration()
         {

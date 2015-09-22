@@ -31,14 +31,14 @@ namespace senditquiet
             conf.SslEnabled = getOptionalParam("-protocol", "normal").Equals("ssl");
             conf.UserName = getRequiredParam("-u");
             conf.Subject = getOptionalParam("-subject", "A mail, sent by using senditquite");
+            conf.Cc = getOptionalParam("-cc", "");
+            conf.Bcc = getOptionalParam("-bcc", "");
             SendMail.getInstance().setConfiguration(conf);
             try
             {
                 string body = getMessageBod();
                 
                 SendMail.getInstance().sendMail(conf.Subject, body, getOptionalParam("-files", "").Split(';'));
-                
-
             }
             catch(Exception e)
             {
@@ -136,6 +136,8 @@ namespace senditquiet
 -p <password>   : SMTP password (required)
 -f <from>       : Sender mail address (required)
 -t <to>         : Comma seperated recipient list (reqired)
+-cc <cc>        : Comma seperated recipient list for cc field
+-bcc <bcc>      : Comma seperated recipient list for Bcc field 
 -protocol <protocol>  : SMTP protocol possible values are, ssl, normal.
 -subject <subject> : subject line, surround with quotes if you want to include spaces
 -body <body> : Mail body. Surround with quotes if you want to include spaces

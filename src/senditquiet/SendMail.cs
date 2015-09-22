@@ -49,6 +49,23 @@ namespace senditquiet
                 {
                     msg.To.Add(new MailAddress(s,s,Encoding.UTF8));    
                 }
+
+                receptions = this.conf.Cc.Split(',', ';', ' ');
+                foreach (string s in receptions)
+                {
+                    if (String.IsNullOrEmpty(s.Trim()))
+                        continue;
+                    msg.CC.Add(new MailAddress(s, s, Encoding.UTF8));
+                }
+
+
+                receptions = this.conf.Bcc.Split(',', ';', ' ');
+                foreach (string s in receptions)
+                {
+                    if (String.IsNullOrEmpty(s.Trim()))
+                        continue;
+                    msg.Bcc.Add(new MailAddress(s, s, Encoding.UTF8));
+                }
         
                 msg.Subject = subject;
                 msg.Body = body;
